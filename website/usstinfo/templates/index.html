@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A layout example that shows off a responsive product landing page.">
+    <title>Jelly</title>
+    <link rel="icon" href="http://139.129.119.238:8080/static/icons/32.ico">
+    <link rel="stylesheet" href="http://139.129.119.238:8080/static/css/pure-min.css">
+    
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/grids-responsive-old-ie-min.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+       	<link rel="stylesheet" href="http://139.129.119.238:8080/static/css/grids-responsive-min.css">
+    <!--<![endif]-->
+    
+    <link rel="stylesheet" href="http://139.129.119.238:8080/static/css/font-awesome.css">
+    <link rel="stylesheet" href="http://139.129.119.238:8080/static/css/animate.css">
+    
+        <!--[if lte IE 8]>
+            <link rel="stylesheet" href="css/marketing-old-ie.css">
+        <![endif]-->
+        <!--[if gt IE 8]><!-->
+            <link rel="stylesheet" href="http://139.129.119.238:8080/static/css/marketing.css">
+            <link rel="stylesheet" type="text/css" href="http://139.129.119.238:8080/static/css/jelly.css">
+        <!--<![endif]-->
+</head>
+<body style="{background-color: #d9ffff}">
+
+<div class="header">
+    <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+        <a class="pure-menu-heading" href="">Jelly</a>
+        <ul class="pure-menu-list">
+<!--             <li class="pure-menu-item pure-menu-selected"><a href="/jwc" class="pure-menu-link">主页</a></li>
+           <li class="pure-menu-item"><a href="javascript:void(0)" class="pure-menu-link">注册</a></li> -->
+            {% if request.session.username %}
+            <li class="pure-menu-item" style="{right:10%;}">
+                <div class="pure-menu pure-menu-horizontal">
+                    <ul class="pure-menu-list">
+                        <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+                            <a href="#" id="menuLink1" class="pure-menu-link">{{ request.session.username }}</a>
+                            <ul class="pure-menu-children">
+                                <li class="pure-menu-item"><a href="/jwc/signout" class="pure-menu-link">注销</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            {% else %}
+            <li class="pure-menu-item" style="{right:10%;}"><a id="jelly-login-btn" class="pure-menu-link">登录</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+<!-- 注册与登录弹出框 -->
+    <div class="jelly-login">
+        <div class="jelly_sign_in">
+        <div class="jelly-login-header">登陆</div>
+        <p></p>
+        <div class="jelly-login-body">
+        <div class="jelly_sign_in" align="center">
+            <form action="signin/" method="GET">
+                <div class="jelly-welcome"></div>
+                <div class="jelly-buttons">
+                <input class="jelly-login-input" type="text" name="stu_num" placeholder="学号">
+                <p></p>
+                <button type="submit" class="pure-button jelly-login-submit">登陆</button>
+                </div>
+                <p></p>
+                <div>
+                
+                </div>
+            </form>
+            <div class="pure-g jelly-login-footer">
+                <div class="pure-u-1-2">
+                <a class="jelly_show_sign_up jelly-action">注册</a>
+                </div>
+                <div class="pure-u-1-2">
+                <span class="jelly-cancel">取消</span>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+         <div class="jelly_sign_up" style="display: none;">
+            <div class="jelly-login-header jelly-action">注册</div>
+            <p></p>
+            <div class="jelly-login-body">
+            <div class="jelly-welcome-signup"></div>
+            <div>
+                <input class="jelly-login-input" id="signupusername" type="text" name="username" placeholder="昵称">
+                <input class="jelly-login-input" id="signupstunum" type="text" name="stu_num" placeholder="学号">
+                <select class="jelly-login-input" id="signupcollege" type="checklist" name="college" placeholder="学院">
+                <div style="height: 200px;">
+                    <option>能源与动力工程学院</option>
+                    <option>光电信息与计算机工程学院</option>
+                    <option>管理学院</option>
+                    <option>机械工程学院</option>
+                    <option>外语学院</option>
+                    <option>环境与建筑学院</option>
+                    <option>医疗器械与食品学院</option>
+                    <option>出版印刷与艺术设计学院</option>
+                    <option>理学院</option>
+                    <option>材料科学与工程学院</option>
+                    <option>基础学院</option>
+                    <option>继续教育学院</option>
+                    <option>工程科技学院</option>
+                    <option>中英国际学院</option>
+                    <option>上海-汉堡国际工程学院（中德学院）</option>
+                    <option>社会科学学院</option>
+                    <option>体育教学部</option>
+                    <option>音乐系</option>
+                    <option>沪江学院</option>
+                    <div style="height: 200px;">
+                </select>
+                <input class="jelly-login-input" id="signupgrade" type="text" name="grade" placeholder="年级">
+            </div>
+            <p></p>
+            <div class="jelly-buttons">
+                <button class="jelly_sign_up_button pure-button jelly-login-submit" type="submit">注册</button>
+            </div>
+            <div class="jelly-login-footer">
+            <div class="pure-g">
+                <div class="pure-u-1-2">
+                <a class="jelly_show_sign_in jelly-action">登陆</a>
+                </div>
+                <div class="pure-u-1-2">
+                <span class="jelly-cancel">取消</span>
+                </div>
+            </div>
+            </div>
+            </div>
+        </div>
+    </div>
+<div class="splash-container">
+    <div class="splash">
+        <div id="jelly-logo" class="jelly-logo animated flipInX">
+        </div>
+        <!-- 搜索框的位置 -->
+        <!-- {% block search-bar %} -->
+        <!-- {% endblock %} -->
+        <form class="pure-form" method="get" action="/jwc/search">  
+	<div id="jelly-input" class="pure-g">
+	    <div class="pure-u-20-24">
+	        <input id="id_q" name="q" type="search">    
+	    </div>
+	    <div class="pure-u-4-24">
+	        <input id="jelly-search-btn" class="pure-button pure-button-primary" type="submit" value="搜索">    
+	    </div>
+	</div>
+	</form>
+    </div>
+</div>
+<!-- 
+    <div class="ribbon l-box-lrg pure-g">
+        
+        <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5">
+
+            <h2 class="content-head content-head-ribbon">Laboris nisi ut aliquip.</h2>
+
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor.
+            </p>
+        </div>
+    </div>
+
+    <div class="content">
+        <h2 class="content-head is-center">Dolore magna aliqua. Uis aute irure.</h2>
+
+        <div class="pure-g">
+            <div class="l-box-lrg pure-u-1 pure-u-md-2-5">
+                <form class="pure-form pure-form-stacked">
+                    <fieldset>
+
+                        <label for="name">Your Name</label>
+                        <input id="name" type="text" placeholder="Your Name">
+
+
+                        <label for="email">Your Email</label>
+                        <input id="email" type="email" placeholder="Your Email">
+
+                        <label for="password">Your Password</label>
+                        <input id="password" type="password" placeholder="Your Password">
+
+                        <button type="submit" class="pure-button">Sign Up</button>
+                    </fieldset>
+                </form>
+            </div>
+
+            <div class="l-box-lrg pure-u-1 pure-u-md-3-5">
+                <h4>Contact Us</h4>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat.
+                </p>
+
+                <h4>More Information</h4>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+            </div>
+        </div>
+
+    </div> -->
+
+
+
+</div>
+
+<div class="footer l-box is-center">
+    	
+</div>
+
+<script type="text/javascript" src="http://139.129.119.238:8080/static/js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+    // $("jelly_sign_up").hide();
+    // $(".userrcmmd").hover(
+    //         // onmousein
+    //         function(){
+    //             $(this).css('display', 'block');
+    //         },
+    //         // onmouseout
+    //         function(){
+    //             // $(this).addClass("animated");
+    //             // $(this).addClass("fadeOut");
+    //             $(this).fadeOut();
+    //         }
+    //     );
+    $("#jelly-login-btn").click(function(){
+        $(".jelly-login").fadeToggle();
+    });
+
+    $(".jelly_show_sign_up").click(function(){
+        $(".jelly_sign_in").hide();
+        $(".jelly_sign_up").fadeIn();
+    });
+    $(".jelly_show_sign_in").click(function(){
+        $(".jelly_sign_up").hide();
+        $(".jelly_sign_in").fadeIn();
+    });
+    $(".jelly-cancel").click(function(){
+        $(".jelly-login").fadeOut();
+    });
+    $(".jelly_sign_up_button").click(function(){
+        var username = $("#signupusername").val();
+        var stu_num = $("#signupstunum").val();
+        var college = $("#signupcollege").val();
+        var major = $("#signupmajor").val();
+        var grade = $("#signupgrade").val();
+        $.ajax({
+            type: "GET",
+            url: "/jwc/signup/",
+            data: {
+                'username': username,
+                'stu_num': stu_num,
+                'college': college,
+                'major': major,
+                'grade': grade
+            },
+            success: function (data) {
+                alert(data.context);
+                window.location.reload();
+            },
+            error: function (data) {
+                alert(data.context);
+            },
+        });
+    });
+</script>
+</body>
+</html>

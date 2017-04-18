@@ -1,0 +1,52 @@
+{% extends "index.html" %}
+{% block content %}
+{% load highlight %}
+<form method="get" action="">  
+<!--    
+<table>  
+    <tr>  
+        <td>
+        {{ form.as_p }}  
+        </td>  
+        <td>  
+            <input type="submit" value="Search">  
+        </td>  
+    </tr>  
+</table>  
+-->
+<div class="input-group">
+    <input id="id_q" name="q" class="form-control" type="search">
+    <span class="input-group-btn">
+        <input class="btn btn-primary form-control" type="submit" value="Search">
+    </span>
+</div>
+<style>
+    .keyword{color:red;}
+</style>
+
+{% if query %}  
+<!--    <h3>结果</h3>  -->
+
+    {% for result in page.object_list %}  
+    <p>
+            <ul class="list-group animated fadeInUp">
+            <a align="center" class="list-group-item" href="/id/{{ result.object.id}}">{{ result.object.title }}</a>  
+            <a class="list-group-item">{% highlight result.text with query css_class "keyword" %}</a>  
+            </ul>
+            </p>
+    {% empty %}  
+        <p>没有结果发现.</p>  
+    {% endfor %}  
+
+    {% if page.has_previous or page.has_next %}  
+        <div>  
+            {% if page.has_previous %}<a href="?q={{ query }}&page={{ page.previous_page_number }}">{% endif %}« Previous{% if page.has_previous %}</a>{% endif %}  
+            |  
+            {% if page.has_next %}<a href="?q={{ query }}&page={{ page.next_page_number }}">{% endif %}Next »{% if page.has_next %}</a>{% endif %}  
+        </div>  
+    {% endif %}  
+{% else %}  
+    {# Show some example queries to run, maybe query syntax, something else? #}  
+{% endif %}  
+</form>  
+{% endblock %}

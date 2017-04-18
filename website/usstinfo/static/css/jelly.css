@@ -1,0 +1,9 @@
+.jelly-logo{
+	height: 100%;
+	width: 100%;
+	top:0;
+	left: 0;
+	background:url('../img/jelly.png');
+	background-size: 100%;
+	background-repeat: no-repeat;
+}

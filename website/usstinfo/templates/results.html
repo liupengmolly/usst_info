@@ -1,0 +1,32 @@
+{% extends "index.html"%}
+
+{% block content %}
+
+<div class="container" id="results">
+	{% if error %}
+		<h2><a>NOT FOUND! \(QAQ)</a></h2>
+	{% else %}
+	{% for result in result_list %}
+		<table class="table table-hover">
+			<thead>
+			<tr>
+				<th>title<th>
+				<th>time<th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td>
+                    <a href='{% url 'info' result.id %}'>{{ result.title }}</a>
+				</td>
+				<td>
+					<a>{{ result.releasetime }}</a>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	{% endfor %}
+	{% endif %}
+</div>
+
+{% endblock %}
